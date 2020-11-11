@@ -2,11 +2,18 @@
   <mat-card style="margin-top:10px; width: 50%;">
     <mat-card-content>
       <ul>
-        <li *ngFor="let file of filesToUpload">
+        <li *ngFor="let file of filesToUpload; let i = index">
           <mat-progress-bar [value]="file.progress"></mat-progress-bar>
           <span id="file-label">
-
+            file.data.name
           </span>
+          <form [id]="i" class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <input matInput #message maxlength="256">
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+          </form>
         </li>
       </ul>
     </mat-card-content>

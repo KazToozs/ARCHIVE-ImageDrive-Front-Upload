@@ -46,6 +46,9 @@ export class UploadButtonComponent implements OnInit {
   }
 
   uploadFiles() {
+
+    // TODO implement multi file upload?
+    // https://stackoverflow.com/questions/53708499/dynamic-form-using-ngfor-and-submitting-values-from-it/53710438
     this.filesToUpload.forEach(file => {
       console.log('Filename: ' + file.data.name);
       console.log('Type: ' + file.data.type);
