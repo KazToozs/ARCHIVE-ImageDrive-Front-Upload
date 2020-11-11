@@ -1,0 +1,24 @@
+<input
+  style="display: none"
+  type="file" (change)="onFileChanged($event)"
+  accept="image/x-png,image/jpeg"
+  multiple
+  #fileInput>
+<button mat-button (click)="fileInput.click()">Choose File</button>
+<button mat-button (click)="onUpload()">Submit image</button>
+
+<!-- <input matInput #message maxlength="256" placeholder="Ex. I need help with..."> -->
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput #message maxlength="256">
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+</form>
+
+
+<!-- <mat-form-field class="example-full-width">
+  <mat-label>Leave a comment</mat-label>
+  <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+</mat-form-field> -->
