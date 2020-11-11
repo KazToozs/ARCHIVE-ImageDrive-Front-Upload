@@ -1,31 +1,11 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+#uploadCardContainer {
+  display: flex;
+  justify-content: center;
 }
 
-.example-full-width {
-  width: 100%;
-}
-
-.mat-hint {
-  color: slategray;
-}
-
-::ng-deep .mat-form-field {
-  .mat-input-element {
-      color: slategray;
-  }
-  .mat-form-field-label {
-      color: slategray;
-  }
-  .mat-form-field-underline {
-      background-color: slategray;
-  }
-  .mat-form-field-ripple {
-      background-color: slategray;
-  }
-  .mat-form-field-required-marker {
-      color: slategray;
-  }
+ul,
+li {
+      margin: 0 0 10px 0;
+      padding: 0;
+      list-style: none;
 }
