@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'upload-app';
+
+  signup = new FormGroup({
+    description: new FormControl(null, Validators.required),
+    image: new FormControl(null, [Validators.required, requiredFileType('png')])
+  });
 }

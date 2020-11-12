@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { UploadService } from 'src/services/upload.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UploadSettings } from 'aws-sdk/clients/quicksight';
 
 // TODO not ideal?
 type FileToUpload = { data: File, inProgress: boolean, progress: number };
@@ -13,9 +15,20 @@ type FileToUpload = { data: File, inProgress: boolean, progress: number };
   styleUrls: ['./upload-button.component.scss']
 })
 export class UploadButtonComponent implements OnInit {
-  fileToUpload: FileToUpload; // TODO not ideal?
+  // fileToUpload: FileToUpload; // TODO not ideal?
 
-  constructor(private uploadService: UploadService) { }
+  @Input() progress;
+
+  private fileToUpload: File | null = null;
+
+  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
+    const file = event && event.item(0);
+    this.fileToUpload = file;
+  }
+
+  constructor(private host: ElementRef<HTMLInputElement>, uploadService: UploadService) {}
+
+
 
   ngOnInit(): void {
   }
