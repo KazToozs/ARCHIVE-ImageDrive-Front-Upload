@@ -12,8 +12,10 @@ export class UploadService {
 
   upload(formData: FormData) {
     const headers = new HttpHeaders();
+    // headers.append('Content-Type', 'undefined');
+
     headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
+    // headers.append('Accept', 'application/json');
     formData.forEach((value, key) => {
       console.log(key + ', ' + value);
     })

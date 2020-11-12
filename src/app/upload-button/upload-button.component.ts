@@ -13,6 +13,8 @@ type FileToUpload = { data: File, inProgress: boolean, progress: number };
   styleUrls: ['./upload-button.component.scss']
 })
 export class UploadButtonComponent implements OnInit {
+  description = '';
+
   fileToUpload: FileToUpload; // TODO not ideal?
 
   constructor(private uploadService: UploadService) { }
@@ -25,9 +27,11 @@ export class UploadButtonComponent implements OnInit {
     console.log('Filename: ' + file.data.name);
     console.log('Type: ' + file.data.type);
     console.log('Size: ' + file.data.size + ' bytes');
+    console.log('Description: ' + this.description)
 
     const formData = new FormData();
     formData.append('uploadFile', file.data, file.data.name);
+    formData.append('description', this.description);
     file.inProgress = true;
     this.uploadService.upload(formData).pipe(
       map(event => {
