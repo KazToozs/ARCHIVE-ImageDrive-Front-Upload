@@ -54,9 +54,9 @@ export class UploadButtonComponent implements OnInit {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        this.setUIMessage(`An error occured with the upload: ${error.status}: ${error.error}`);
+        this.setUIMessage(`An error occured with the upload: ${error.status}: ${error.statusText}`);
         file.inProgress = false;
-        return of(`${file.data.name} upload failed: ${error}`);
+        return of(`${file.data.name} upload failed: ${error.error}`);
       })).subscribe((event: any) => {
         if (typeof (event) === 'object') {
           console.log(event)
