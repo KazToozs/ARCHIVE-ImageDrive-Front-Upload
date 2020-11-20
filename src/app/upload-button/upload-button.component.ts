@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -59,10 +59,8 @@ export class UploadButtonComponent implements OnInit {
         return of(`${file.data.name} upload failed: ${error.error}`);
       })).subscribe((event: any) => {
         if (typeof (event) === 'object') {
-          console.log(event)
+          console.log(event);
           this.setUIMessage('Upload succeeded');
-          // TODO delete this
-          console.log('Server returned: ' + event.body);
         }
       });
   }
