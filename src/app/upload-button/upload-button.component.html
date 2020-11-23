@@ -4,7 +4,6 @@
       <div class="ui-message">{{UIMessage | async}}</div>
       <ul>
         <li *ngIf="fileToUpload">
-          <mat-progress-bar [value]="fileToUpload.progress"></mat-progress-bar>
           <span id="file-label">
             {{fileToUpload.data.name}}
           </span>
