@@ -3,6 +3,7 @@ import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { UploadService } from '../services/upload.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 // TODO not ideal?
 type FileToUpload = { data: File, inProgress: boolean, progress: number };
@@ -17,7 +18,8 @@ export class UploadButtonComponent implements OnInit {
 
   public readonly UIMessage: Observable<string> = this.UIMessageSubject.asObservable();
 
-  description = '';
+  description = new FormControl('', [Validators.required]);
+
   fileToUpload: FileToUpload; // TODO not ideal?
 
   constructor(private uploadService: UploadService) {
@@ -27,13 +29,13 @@ export class UploadButtonComponent implements OnInit {
   }
 
   uploadFile(file: FileToUpload) {
-    if (!this.description) {
-      this.UIMessageSubject.next('Please set a description');
+    if (!this.description.valid) {
+      this.UIMessageSubject.next('Failed: please set a description');
       return;
     }
     const formData = new FormData();
     formData.append('uploadFile', file.data, file.data.name);
-    formData.append('description', this.description);
+    formData.append('description', this.description.value);
     file.inProgress = true;
     return this.uploadService.upload(formData).pipe(
       map(event => {
@@ -43,6 +45,7 @@ export class UploadButtonComponent implements OnInit {
         }
       }),
       catchError((error: HttpErrorResponse) => {
+        console.log(error)
         this.setUIMessage(`An error occured with the upload: ${error.status}: ${error.statusText}`);
         file.inProgress = false;
         return of(`${file.data.name} upload failed: ${error.error}`);

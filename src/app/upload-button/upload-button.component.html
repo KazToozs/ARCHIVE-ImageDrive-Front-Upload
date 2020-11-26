@@ -7,12 +7,14 @@
           <span id="file-label">
             {{fileToUpload.data.name}}
           </span>
-          <mat-form-field class="example-full-width">
-            <mat-label>Description</mat-label>
-            <input matInput #message maxlength="256" [(ngModel)]="description">
-            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-          </mat-form-field>
+
         </li>
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <input matInput #message maxlength="256" [formControl]="description">
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+          <mat-error *ngIf="description.invalid">Please input description</mat-error>
+        </mat-form-field>
       </ul>
     </mat-card-content>
     <mat-card-actions>

@@ -54,26 +54,21 @@ describe('UploadButtonComponent', () => {
     type FileToUpload = { data: File, inProgress: boolean, progress: number };
     let file: File;
     let fileToUpload: FileToUpload;
-    let service: UploadService;
-    let httpTestingController: HttpTestingController;
 
     beforeEach(() => {
-      service = TestBed.inject(UploadService);
       file = new File(['sample'], 'sample.jpeg', { type: 'image/jpeg' });
       fileToUpload = {data: file, inProgress: false, progress: 0};
-      httpTestingController = TestBed.inject(HttpTestingController);
-
     });
 
     it('should send file data to upload service if valid', fakeAsync(() => {
-      component.description = 'test';
+      component.description.setValue('test');
       component.uploadFile(fileToUpload);
       component.UIMessage.subscribe((val) => expect(val).toEqual('Uploading...'));
     }));
 
     it('should set error if missing description', fakeAsync(() => {
       component.uploadFile(fileToUpload);
-      component.UIMessage.subscribe((val) => expect(val).toEqual('Please set a description'));
+      component.UIMessage.subscribe((val) => expect(val).toEqual('Failed: please set a description'));
     }));
 
 
