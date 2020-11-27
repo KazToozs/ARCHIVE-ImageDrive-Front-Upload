@@ -5,7 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { UploadService } from '../services/upload.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-// TODO not ideal?
 type FileToUpload = { data: File, inProgress: boolean, progress: number };
 
 @Component({
@@ -20,7 +19,7 @@ export class UploadButtonComponent implements OnInit {
 
   description = new FormControl('', [Validators.required]);
 
-  fileToUpload: FileToUpload; // TODO not ideal?
+  fileToUpload: FileToUpload;
 
   constructor(private uploadService: UploadService) {
   }
@@ -69,7 +68,6 @@ export class UploadButtonComponent implements OnInit {
         this.fileToUpload = { data: file, inProgress: false, progress: 0 };
       }
       else {
-        // TODO state error in size or file type
         this.setUIMessage('Please upload a JPEG/PNG below 500Kb');
       }
     }

@@ -1,9 +1,6 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { UploadButtonComponent } from './upload-button.component';
-import { UploadService } from '../services/upload.service';
-import { HttpEvent } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 describe('UploadButtonComponent', () => {
   let component: UploadButtonComponent;
