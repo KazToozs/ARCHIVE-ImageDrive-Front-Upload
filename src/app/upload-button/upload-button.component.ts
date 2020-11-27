@@ -3,7 +3,7 @@ import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { UploadService } from '../services/upload.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 type FileToUpload = { data: File, inProgress: boolean, progress: number };
 

@@ -2,6 +2,8 @@
   "name": "upload-app",
   "version": "0.0.0",
   "scripts": {
+    "fresh-start": "(npm run install-all) & npm run initialise",
+    "install-all": "npm install && cd ../backend-upload && npm install",
     "initialise": "concurrently \"cd ../backend-upload && npm run initialise\" \"npm run start\"",
     "dev": "concurrently \"cd ../backend-upload && npm run start\" \"npm run start\"",
     "ng": "ng",
